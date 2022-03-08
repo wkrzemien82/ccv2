@@ -113,7 +113,7 @@ public class CMSLinkComponentRendererTest {
         String actual = stringWriter.toString();
         String expected = "<a href=\"https://www.somesite.com/page/subpage\" " +
                 "title=\"Link Name&lt;script&gt;alert(&#39;attacked&#39;)&lt;/script&gt;\">" +
-                "Link Name&lt;script&gt;alert(&#39;attacked&#39;)&lt;/script&gt;</a>";
+                "Link Name</a>";
 
         Assert.assertEquals(expected, actual);
     }
@@ -131,7 +131,7 @@ public class CMSLinkComponentRendererTest {
         String actual = stringWriter.toString();
         String expected = "<a href=\"https://www.somesite.com/page/subpage\" class=\"fsa-logo\" " +
                 "style=\"font-weight: bold\">" +
-                "alert(&#39;attacked&#39;) title&#61;&#34;Link Name&lt;script&gt;alert(&#39;attacked&#39;)&lt;/script&gt;&#34; &gt;Link Name&lt;script&gt;alert(&#39;attacked&#39;)&lt;/script&gt;</a>";
+                "alert(&#39;attacked&#39;) title&#61;&#34;Link Name&#34; &gt;Link Name</a>";
 
         Assert.assertEquals(expected, actual);
     }
@@ -165,7 +165,7 @@ public class CMSLinkComponentRendererTest {
         componentRenderer.renderComponent(pageContext, component);
         String actual = stringWriter.toString();
         String expected = "<span class=\"empty-nav-item\">" +
-                "Link Name&lt;script&gt;alert(&#39;attacked&#39;)&lt;/script&gt;</span>";
+                "Link Name</span>";
 
         Assert.assertEquals(expected, actual);
     }

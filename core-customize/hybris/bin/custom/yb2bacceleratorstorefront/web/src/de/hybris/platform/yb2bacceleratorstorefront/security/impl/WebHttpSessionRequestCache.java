@@ -36,7 +36,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 public class WebHttpSessionRequestCache extends HttpSessionRequestCache implements Serializable
 {
 	private static final Logger LOG = Logger.getLogger(WebHttpSessionRequestCache.class);
-
+	
 	private static final long serialVersionUID = 1L;
 	private static final String REFERER = "referer";
 

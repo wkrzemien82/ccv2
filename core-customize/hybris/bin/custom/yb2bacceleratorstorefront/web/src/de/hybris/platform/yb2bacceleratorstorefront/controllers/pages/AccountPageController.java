@@ -20,7 +20,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.EmailVal
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.PasswordValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ProfileValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.verification.AddressVerificationResultHandler;
-import de.hybris.platform.commercefacades.consent.CustomerConsentDataStrategy;
+import de.hybris.platform.acceleratorstorefrontcommons.strategy.CustomerConsentDataStrategy;
 import de.hybris.platform.acceleratorstorefrontcommons.util.AddressDataUtil;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
@@ -853,7 +853,7 @@ public class AccountPageController extends AbstractSearchPageController
 	}
 
 	@RequestMapping(value = "/remove-address/" + ADDRESS_CODE_PATH_VARIABLE_PATTERN, method =
-	{ RequestMethod.GET, RequestMethod.POST }) //NOSONAR
+	{ RequestMethod.GET, RequestMethod.POST })
 	@RequireHardLogIn
 	public String removeAddress(@PathVariable("addressCode") final String addressCode, final RedirectAttributes redirectModel)
 	{

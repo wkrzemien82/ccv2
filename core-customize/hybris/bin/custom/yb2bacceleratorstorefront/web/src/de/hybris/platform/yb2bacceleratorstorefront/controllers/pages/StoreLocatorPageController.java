@@ -142,7 +142,7 @@ public class StoreLocatorPageController extends AbstractSearchPageController
 	}
 
 	@RequestMapping(value = "/position", method =
-	{ RequestMethod.GET, RequestMethod.POST }) //NOSONAR
+	{ RequestMethod.GET, RequestMethod.POST })
 	public String searchByCurrentPosition(@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final AbstractSearchPageController.ShowMode showMode,
 			@RequestParam(value = "sort", required = false) final String sortCode, final StorePositionForm storePositionForm,

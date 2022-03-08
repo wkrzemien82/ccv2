@@ -34,11 +34,11 @@ public class CsrfProtectionMatcherTest extends HybrisJUnit4Test
 	public void setUp()
 	{
 		excludeUrlListBackup = Config.getParameter(CSRF_PROTECTION_EXCLUDE_URLS);
-		Config.setParameter(CSRF_PROTECTION_EXCLUDE_URLS, "^(/[^/?]+)*(/excludeMeOne)$");
+		Config.setParameter(CSRF_PROTECTION_EXCLUDE_URLS, "/[^/]+(/[^?]*)+(excludeMeOne)$");
 
 		csrfProtectionMatcher = new CsrfProtectionMatcher();
 		final List<String> excludeUrlList = new ArrayList<String>();
-		excludeUrlList.add("^(/[^/?]+)*(/excludeMeTwo)$");
+		excludeUrlList.add("/[^/]+(/[^?]*)+(excludeMeTwo)$");
 		csrfProtectionMatcher.setCsrfAllowedUrlPatterns(excludeUrlList);
 
 		request = new MockHttpServletRequest();

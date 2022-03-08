@@ -28,6 +28,7 @@ import org.springframework.web.util.UrlPathHelper;
  * are not handled by other controllers.
  */
 @Controller
+//@RequestMapping()
 public class DefaultPageController extends AbstractPageController
 {
 	private static final String ERROR_CMS_PAGE = "notFound";
@@ -40,7 +41,7 @@ public class DefaultPageController extends AbstractPageController
 	@Resource(name = "contentPageBreadcrumbBuilder")
 	private ContentPageBreadcrumbBuilder contentPageBreadcrumbBuilder;
 
-	@RequestMapping(value = "/**", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String get(final Model model, final HttpServletRequest request, final HttpServletResponse response)
 			throws CMSItemNotFoundException
 	{

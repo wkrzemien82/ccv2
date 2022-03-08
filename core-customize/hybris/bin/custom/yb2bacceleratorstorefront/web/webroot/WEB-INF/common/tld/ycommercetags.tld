@@ -212,15 +212,6 @@
 		<function-class>de.hybris.platform.acceleratorstorefrontcommons.tags.Functions</function-class>
 		<function-signature>java.lang.String sanitizeHtmlTagName(java.lang.String)</function-signature>
 	</function>
-	
-	<function>
-		<description>
-			Validate unsafe URL schemes
-		</description>
-		<name>validateUrlScheme</name>
-		<function-class>de.hybris.platform.acceleratorstorefrontcommons.tags.HTMLSanitizer</function-class>
-		<function-signature>boolean validateUrlScheme(java.lang.String)</function-signature>
-	</function>
 
 	<function>
 		<description>

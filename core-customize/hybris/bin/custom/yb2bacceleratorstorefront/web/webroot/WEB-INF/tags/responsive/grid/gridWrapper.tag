@@ -11,7 +11,7 @@
 <c:if test="${entry.product.multidimensional}">
 	<c:forEach items="${entry.entries}" var="currentEntry" varStatus="stat">
 		<c:set var="subEntries" value="${stat.first ? '' : subEntries}${currentEntry.product.code}:${currentEntry.quantity},"/>
-		<c:set var="productName" value="${currentEntry.product.name}"/>
+		<c:set var="productName" value="${fn:escapeXml(currentEntry.product.name)}"/>
 	</c:forEach>
 
 	<div style="display:none" id="grid${index}" data-sub-entries="${fn:escapeXml(subEntries)}" 

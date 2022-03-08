@@ -99,7 +99,7 @@ ACC.savedcarts = {
             		} else {
             			var errorMsg = status.responseText.slice(1, -1);
             			$('.js-restore-current-cart-form').addClass('has-error');
-            			$('.js-restore-error-container').html(ACC.sanitizer.sanitize(errorMsg));
+            			$('.js-restore-error-container').html(errorMsg);
             			$('.js-savedcart_restore_confirm_modal').colorbox.resize();
             		}
             	});

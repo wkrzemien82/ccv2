@@ -112,10 +112,11 @@ public class ProductPageController extends AbstractPageController
 	private FutureStockFacade futureStockFacade;
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-	public String productDetail(@PathVariable("productCode") final String productCode, final Model model,
+	public String productDetail(@PathVariable("productCode") final String encodedProductCode, final Model model,
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws CMSItemNotFoundException, UnsupportedEncodingException
 	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final List<ProductOption> extraOptions = Arrays.asList(ProductOption.VARIANT_MATRIX_BASE, ProductOption.VARIANT_MATRIX_URL,
 				ProductOption.VARIANT_MATRIX_MEDIA);
 
@@ -143,9 +144,10 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/orderForm", method = RequestMethod.GET)
-	public String productOrderForm(@PathVariable("productCode") final String productCode, final Model model,
+	public String productOrderForm(@PathVariable("productCode") final String encodedProductCode, final Model model,
 			final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
 	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final List<ProductOption> extraOptions = Arrays.asList(ProductOption.VARIANT_MATRIX_BASE,
 				ProductOption.VARIANT_MATRIX_PRICE, ProductOption.VARIANT_MATRIX_MEDIA, ProductOption.VARIANT_MATRIX_STOCK,
 				ProductOption.URL);
@@ -164,9 +166,10 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/zoomImages", method = RequestMethod.GET)
-	public String showZoomImages(@PathVariable("productCode") final String productCode,
+	public String showZoomImages(@PathVariable("productCode") final String encodedProductCode,
 			@RequestParam(value = "galleryPosition", required = false) final String galleryPosition, final Model model)
 	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode,
 				Collections.singleton(ProductOption.GALLERY));
 		final List<Map<String, ImageData>> images = getGalleryImages(productData);
@@ -190,9 +193,10 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/quickView", method = RequestMethod.GET)
-	public String showQuickView(@PathVariable("productCode") final String productCode, final Model model,
+	public String showQuickView(@PathVariable("productCode") final String encodedProductCode, final Model model,
 			final HttpServletRequest request)
 	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final ProductModel productModel = productService.getProductForCode(productCode);
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode,
 				Arrays.asList(ProductOption.BASIC, ProductOption.PRICE, ProductOption.SUMMARY, ProductOption.DESCRIPTION,
@@ -207,11 +211,12 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/review", method =
-	{ RequestMethod.GET, RequestMethod.POST }) //NOSONAR
-	public String postReview(@PathVariable("productCode") final String productCode, final ReviewForm form,
+	{ RequestMethod.GET, RequestMethod.POST })
+	public String postReview(@PathVariable("productCode") final String encodedProductCode, final ReviewForm form,
 			final BindingResult result, final Model model, final HttpServletRequest request, final RedirectAttributes redirectAttrs)
 			throws CMSItemNotFoundException
 	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		getReviewValidator().validate(form, result);
 
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, null);
@@ -238,9 +243,10 @@ public class ProductPageController extends AbstractPageController
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/reviewhtml/"
 			+ REVIEWS_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-	public String reviewHtml(@PathVariable("productCode") final String productCode,
+	public String reviewHtml(@PathVariable("productCode") final String encodedProductCode,
 			@PathVariable("numberOfReviews") final String numberOfReviews, final Model model, final HttpServletRequest request)
 	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final ProductModel productModel = productService.getProductForCode(productCode);
 		final List<ReviewData> reviews;
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode,
@@ -266,9 +272,10 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/writeReview", method = RequestMethod.GET)
-	public String writeReview(@PathVariable("productCode") final String productCode, final Model model)
+	public String writeReview(@PathVariable("productCode") final String encodedProductCode, final Model model)
 			throws CMSItemNotFoundException
 	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		model.addAttribute(new ReviewForm());
 		setUpReviewPage(model, productCode);
 		return ControllerConstants.Views.Pages.Product.WriteReview;
@@ -286,10 +293,11 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/writeReview", method = RequestMethod.POST)
-	public String writeReview(@PathVariable("productCode") final String productCode, final ReviewForm form,
+	public String writeReview(@PathVariable("productCode") final String encodedProductCode, final ReviewForm form,
 			final BindingResult result, final Model model, final HttpServletRequest request, final RedirectAttributes redirectAttrs)
 			throws CMSItemNotFoundException
 	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		getReviewValidator().validate(form, result);
 
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, null);
@@ -314,9 +322,10 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/futureStock", method = RequestMethod.GET)
-	public String productFutureStock(@PathVariable("productCode") final String productCode, final Model model,
+	public String productFutureStock(@PathVariable("productCode") final String encodedProductCode, final Model model,
 			final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
 	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final boolean futureStockEnabled = Config.getBoolean(FUTURE_STOCK_ENABLED, false);
 		if (futureStockEnabled)
 		{
@@ -509,4 +518,7 @@ public class ProductPageController extends AbstractPageController
 		final ProductModel productModel = productService.getProductForCode(productCode);
 		return cmsPageService.getPageForProduct(productModel, getCmsPreviewService().getPagePreviewCriteria());
 	}
+
+
+
 }

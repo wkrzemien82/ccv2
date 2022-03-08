@@ -55,8 +55,8 @@ public class EmailPageController extends AbstractPageController
 	public String get(final HttpServletRequest request, final HttpServletResponse response, final ModelAndView modelAndView,
 			@PathVariable final String emailCmsPageUid) throws CMSItemNotFoundException
 	{
-		final List<String> jsPaths = uiThemeUtils.getSmartEditAddOnJSPaths(request);
-		final List<String> cssPaths = uiThemeUtils.getSmartEditAddOnCSSPaths(request);
+		final List<String> jsPaths = uiThemeUtils.getAddOnJSPaths(request);
+		final List<String> cssPaths = uiThemeUtils.getAddOnCommonCSSPaths(request);
 
 		final EmailPageData emailPageData = new EmailPageData();
 		emailPageData.setPageUid(emailCmsPageUid);

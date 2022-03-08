@@ -97,7 +97,7 @@ public class PickupInStoreController extends AbstractSearchPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/pointOfServices", method = RequestMethod.POST)
-	public String getPointOfServiceForStorePickupSubmit(@PathVariable("productCode") final String productCode,
+	public String getPointOfServiceForStorePickupSubmit(@PathVariable("productCode") final String encodedProductCode, // NOSONAR
 			@RequestParam(value = "locationQuery", required = false) final String locationQuery,
 			@RequestParam(value = "latitude", required = false) final Double latitude,
 			@RequestParam(value = "longitude", required = false) final Double longitude,
@@ -118,12 +118,12 @@ public class PickupInStoreController extends AbstractSearchPageController
 
 		model.addAttribute("qty", qty);
 
-		return getPointOfServiceForStorePickup(productCode, locationQuery, geoPoint, page, showMode, sortCode,
+		return getPointOfServiceForStorePickup(decodeWithScheme(encodedProductCode, UTF_8), locationQuery, geoPoint, page, showMode, sortCode,
 				cartPage, entryNumber, model, RequestMethod.POST, response);
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/pointOfServices", method = RequestMethod.GET)
-	public String getPointOfServiceForStorePickupClick(@PathVariable("productCode") final String productCode,
+	public String getPointOfServiceForStorePickupClick(@PathVariable("productCode") final String encodedProductCode, // NOSONAR
 			@RequestParam(value = "page", defaultValue = "0") final int page,
 			@RequestParam(value = "show", defaultValue = "Page") final AbstractSearchPageController.ShowMode showMode,
 			@RequestParam(value = "sort", required = false) final String sortCode,
@@ -140,7 +140,7 @@ public class PickupInStoreController extends AbstractSearchPageController
 			geoPoint = userLocationData.getPoint();
 		}
 
-		return getPointOfServiceForStorePickup(productCode, location, geoPoint, page, showMode, sortCode,
+		return getPointOfServiceForStorePickup(decodeWithScheme(encodedProductCode, UTF_8), location, geoPoint, page, showMode, sortCode,
 				cartPage, entryNumber, model, RequestMethod.GET, response);
 	}
 
@@ -347,7 +347,7 @@ public class PickupInStoreController extends AbstractSearchPageController
 	}
 
 	@RequestMapping(value = "/cart/update/delivery", method =
-	{ RequestMethod.GET, RequestMethod.POST }) //NOSONAR
+	{ RequestMethod.GET, RequestMethod.POST })
 	public String updateToDelivery(@RequestParam("entryNumber") final long entryNumber, final RedirectAttributes redirectModel)
 			throws CommerceCartModificationException
 	{

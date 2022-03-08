@@ -23,7 +23,7 @@ public class SiteThemeResolverUtils
 
 		// Resolve Theme from CMSSiteService
 		final CMSSiteModel currentSite = getCmsSiteService().getCurrentSite();
-		if (currentSite != null && uiExperienceLevel != null)
+		if (currentSite != null)
 		{
 			return combineSiteAndTheme(uiExperienceLevel.getCode(), currentSite.getUid(), getThemeNameForSite(currentSite));
 		}

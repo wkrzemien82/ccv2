@@ -146,23 +146,6 @@ public class ImageMapComponentRendererTest
 		Assert.assertEquals(expected.toString(), result);
 	}
 
-	@Test
-	public void testInputWithJavascriptUrl() throws ServletException, IOException
-	{
-		final String payload = "<area shape=\"rect\" coords=\"276,44,449,210\" href=\"javascript:alert(1)\" />";
-		createMockExpectations(payload);
-		imageMapComponentRenderer.renderComponent(pageContext, component);
-		final String result = stringWriter.toString();
-		final StringBuilder expected = new StringBuilder();
-		expected.append("<div>");
-		expected.append(
-				"<img title=\"sometest\" alt=\"sometest\" src=\"https://somesshop-uk.com/dress/image01.jpg\" usemap=\"#map\" />");
-		expected.append("<map name=\"map\">");
-		expected.append("<area shape=\"rect\" coords=\"276,44,449,210\" />");
-		expected.append("</map></div>");
-		Assert.assertEquals(result, expected.toString());
-	}
-
 	protected void createMockExpectations(final String imageMapHTMLPayload) throws ServletException, IOException
 	{
 		doCallRealMethod().when(imageMapComponentRenderer).renderComponent(pageContext, component);

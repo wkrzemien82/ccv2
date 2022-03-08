@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * A postHandle HandlerInterceptor that runs a number of BeforeViewHandlers before the view is rendered.
  */
-public class BeforeControllerHandlerInterceptor implements HandlerInterceptor
+public class BeforeControllerHandlerInterceptor extends HandlerInterceptorAdapter
 {
 	private static final String INTERCEPTOR_ONCE_KEY = BeforeControllerHandlerInterceptor.class.getName();
 

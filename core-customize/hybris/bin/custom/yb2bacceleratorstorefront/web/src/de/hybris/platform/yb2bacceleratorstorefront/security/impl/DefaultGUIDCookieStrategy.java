@@ -26,16 +26,18 @@ import org.springframework.web.util.CookieGenerator;
 public class DefaultGUIDCookieStrategy implements GUIDCookieStrategy
 {
 	private static final Logger LOG = Logger.getLogger(DefaultGUIDCookieStrategy.class);
-	private static final int RANDOM_BYTES = 20;
 
 	private final SecureRandom random;
+	private final MessageDigest sha;
 
 	private CookieGenerator cookieGenerator;
 
 	public DefaultGUIDCookieStrategy() throws NoSuchAlgorithmException
 	{
 		random = SecureRandom.getInstance("SHA1PRNG");
+		sha = MessageDigest.getInstance("SHA-1");
 		Assert.notNull(random);
+		Assert.notNull(sha);
 	}
 
 	@Override
@@ -74,9 +76,9 @@ public class DefaultGUIDCookieStrategy implements GUIDCookieStrategy
 
 	protected String createGUID()
 	{
-		final byte[] randomBytes = new byte[RANDOM_BYTES];
-		getRandom().nextBytes(randomBytes);
-		return String.valueOf(Hex.encodeHex(randomBytes));
+		final String randomNum = String.valueOf(getRandom().nextInt());
+		final byte[] result = getSha().digest(randomNum.getBytes());
+		return String.valueOf(Hex.encodeHex(result));
 	}
 
 	protected CookieGenerator getCookieGenerator()
@@ -98,5 +100,10 @@ public class DefaultGUIDCookieStrategy implements GUIDCookieStrategy
 	protected SecureRandom getRandom()
 	{
 		return random;
+	}
+
+	protected MessageDigest getSha()
+	{
+		return sha;
 	}
 }

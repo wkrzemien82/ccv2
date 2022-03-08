@@ -14,7 +14,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.ConsentForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.GuestRegisterForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.GuestRegisterValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.security.AutoLoginStrategy;
-import de.hybris.platform.commercefacades.consent.CustomerConsentDataStrategy;
+import de.hybris.platform.acceleratorstorefrontcommons.strategy.CustomerConsentDataStrategy;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import de.hybris.platform.commercefacades.consent.ConsentFacade;

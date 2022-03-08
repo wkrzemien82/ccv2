@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * A postHandle HandlerInterceptor that runs a number of BeforeViewHandlers before the view is rendered.
  */
-public class BeforeViewHandlerInterceptor implements HandlerInterceptor
+public class BeforeViewHandlerInterceptor extends HandlerInterceptorAdapter
 {
 	private List<BeforeViewHandler> beforeViewHandlers;
 

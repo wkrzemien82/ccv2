@@ -226,8 +226,7 @@ ACC.storefinder = {
 				disableAutoPan: true
 			});
 			google.maps.event.addListener(marker, 'click', function (){
-				var mapWindow = infowindow.open(map, marker, 'noopener,noreferrer');
-				mapWindow.opener = null;
+				infowindow.open(map, marker);
 			});
 		}
 		

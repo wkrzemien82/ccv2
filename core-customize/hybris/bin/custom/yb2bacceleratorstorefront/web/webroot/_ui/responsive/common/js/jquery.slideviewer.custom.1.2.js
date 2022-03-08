@@ -40,7 +40,7 @@ jQuery.fn.slideView = function(settings) {
 		container.removeClass("svw").addClass("stripViewer");		
 		var pictWidth = container.find("img").width();
 		var pictHeight = container.find("img").height();
-		var pictEls = container.find("li").length;
+		var pictEls = container.find("li").size();
 		var stripViewerWidth = pictWidth*pictEls;
 		container.find("ul").css("width" , stripViewerWidth);
 		container.css("width" , pictWidth);

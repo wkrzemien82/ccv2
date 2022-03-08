@@ -1,199 +1,261 @@
 {
-    "commerceSuiteVersion": "2105",
-    "enableImageProcessingService": true,
+    "commerceSuiteVersion": "1905",
+    "useCloudExtensionPack": true,
     "extensions": [
-        "cloudmediaconversion",
-        "mediaconversionbackoffice"
-    ],
-    "useConfig": {
-        "properties": [
-            {
-                "location": "hybris/config/environments/local-dev.properties",
-                "persona": "development"
-            },
-            {
-                "location": "hybris/config/environments/local-stage.properties",
-                "persona": "staging"
-            },
-            {
-                "location": "hybris/config/environments/local-prod.properties",
-                "persona": "production"
-            },
-            {
-                "location": "hybris/config/environments/common.properties"
-            },
-            {
-                "aspect": "accstorefront",
-                "location": "hybris/config/environments/accstorefront.properties"
-            },
-            {
-                "aspect": "api",
-                "location": "hybris/config/environments/api.properties"
-            },
-            {
-                "aspect": "backoffice",
-                "location": "hybris/config/environments/backoffice.properties"
-            }
-        ],
-        "extensions": {
-            "location": "hybris/config/localextensions.xml",
-            "exclude": [
-                "azurecloudhotfolder",
-                "cloudcommons",
-                "cloudhotfolder"
-            ]
-        }
-    },
-    "storefrontAddons": [
-        {
-            "addons": [
-                "adaptivesearchsamplesaddon",
-                "assistedservicecustomerinterestsaddon",
-                "assistedservicepromotionaddon",
-                "assistedservicestorefront",
-                "assistedserviceyprofileaddon",
-                "captchaaddon",
-                "configurablebundleaddon",
-                "consignmenttrackingaddon",
-                "customercouponaddon",
-                "customercouponsamplesaddon",
-                "customerinterestsaddon",
-                "customerticketingaddon",
-                "eventtrackingwsaddon",
-                "merchandisingaddon",
-                "merchandisingstorefrontsampledataaddon",
-                "multicountrysampledataaddon",
-                "notificationaddon",
-                "ordermanagementaddon",
-                "orderselfserviceaddon",
-                "pcmbackofficesamplesaddon",
-                "personalizationaddon",
-                "personalizationsampledataaddon",
-                "personalizationyprofilesampledataaddon",
-                "profiletagaddon",
-                "selectivecartsplitlistaddon",
-                "smarteditaddon",
-                "stocknotificationaddon",
-                "textfieldconfiguratortemplateaddon",
-                "timedaccesspromotionengineaddon",
-                "timedaccesspromotionenginesamplesaddon",
-                "xyformssamples",
-                "xyformsstorefrontcommons",
-                "ysapproductconfigaddon"
-            ],
-            "storefronts": [
-                "yacceleratorstorefront",
-                "yb2bacceleratorstorefront"
-            ],
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addons": [
-                "accountsummaryaddon",
-                "b2bacceleratoraddon",
-                "b2bpunchoutaddon",
-                "commerceorgaddon",
-                "commerceorgsamplesaddon",
-                "sapproductconfigb2baddon",
-                "secureportaladdon"
-            ],
-            "storefront": "yb2bacceleratorstorefront",
-            "template": "yacceleratorstorefront"
-        }
+        "acceleratorservices",
+        "ordermanagementaddon",
+        "orderselfserviceaddon",
+        "ordermanagementwebservices",
+        "b2bordermanagementwebservices",
+        "warehousing",
+        "warehousingbackoffice",
+        "warehousingwebservices",
+        "adaptivesearchsolr",
+        "adaptivesearchbackoffice",
+        "adaptivesearchsamplesaddon",
+        "b2bcommercebackoffice",
+        "commerceservicesbackoffice",
+        
+        "yacceleratorcockpits",
+        "yacceleratorbackoffice",
+        "yacceleratorinitialdata",
+        "ycommercewebservicestest",
+        "yacceleratorordermanagement",
+        "yacceleratorstorefront",
+        "yaddon",
+        "ycommercewebservices",
+        "yb2bacceleratorstorefront",
+        "fixCustomerInterceptor",
+        "apparelstore",
+        "electronicsstore",
+        "powertoolsstore",
+        "cmsoccaddon",
+        "solrserver",
+        "acceleratorwebservicesaddon",
+        "b2bacceleratoraddon",
+        "commerceorgaddon",
+        "commerceorgsamplesaddon",
+        "accountsummaryaddon",
+                                        
+        "assistedservicestorefront",
+        "assistedservicewebservices",
+        "customerticketingaddon",
+        "customersupportbackoffice",
+        "ticketsystembackoffice",
+        "consignmenttrackingbackoffice",
+        
+        "rulebuilderbackoffice",
+        "couponbackoffice",
+        "droolsruleengineservices",
+        "couponfacades",
+        "promotionenginesamplesaddon",
+        "consignmenttrackingaddon",
+        "pcmbackofficesamplesaddon",
+        "consignmenttrackingoccaddon",
+        
+        "outboundservices",
+        "odata2webservices",
+        "integrationbackoffice",
+        "integrationmonitoringbackoffice",
+        "sapcoreaddon",
+        "sapcoreconfigurationbackoffice",
+        "sapmodelbackoffice",
+        "sapcustomerb2bbackoffice",
+        "ysapomsfulfillment",
+        "sapcpiadapter",
+        "sapcpicustomerexchange",
+        "sapcpicustomerexchangeb2b",
+        "sapcpiorderexchangeoms",
+        "sapcpiorderexchangeomsb2b",
+        "saporderexchangebackoffice",
+        "sapcpiproductexchange",
+        "sapcoretest",
+        "sapcustomerb2b",
+        "sapcustomerb2c",
+        "payment",
+ 
+  		"sapinvoicebol",
+		"sapinvoicefacades",
+		"sapinvoiceservices",
+		"sapinvoiceaddon"      
     ],
     "properties": [
         {
-            "key": "lang.packs",
-            "value": "de,en,es,es_CO,fr,it,ja,ko,pl,pt,ru,zh,zh_TW,hi,id,cs,cy"
+            "key": "website.electronics.http",
+            "value": "http://accstorefront.clwfyft1x1-scpiprodu1-d1-public.model-t.cc.commerce.ondemand.com/electronics"
         },
         {
-            "key": "endpoint.hac.platform.init.disabled",
-            "value": "true"
+            "key": "website.electronics.https",
+            "value": "https://accstorefront.clwfyft1x1-scpiprodu1-d1-public.model-t.cc.commerce.ondemand.com/electronics"
         },
         {
-            "key": "endpoint.hac.platform.update.disabled",
-            "value": "true"
+            "key": "website.powertools.http",
+            "value": "http://accstorefront.clwfyft1x1-scpiprodu1-d1-public.model-t.cc.commerce.ondemand.com/powertools"
         },
         {
-            "key": "test.property.1",
-            "value": "test-property-1-value-prod",
-            "persona": "production"
+            "key": "website.powertools.https",
+            "value": "https://accstorefront.clwfyft1x1-scpiprodu1-d1-public.model-t.cc.commerce.ondemand.com/powertools"
         },
         {
-            "key": "test.property.1",
-            "value": "test-property-1-value-dev",
-            "persona": "development"
+            "key": "website.apparel.http",
+            "value": "http://accstorefront.clwfyft1x1-scpiprodu1-d1-public.model-t.cc.commerce.ondemand.com/apparel"
         },
         {
-            "key": "test.property.1",
-            "value": "test-property-1-value"
+            "key": "website.apparel.https",
+            "value": "https://accstorefront.clwfyft1x1-scpiprodu1-d1-public.model-t.cc.commerce.ondemand.com/apparel"
         },
         {
-            "key": "test.property.2",
-            "value": "test-property-2-value"
+            "key": "keygen.customer.sap_customer_id.start",
+            "value": "9001008000"
         },
         {
-            "key": "googleApiKey",
-            "value": ""
+            "key": "keygen.customer.sap_contact_id.start",
+            "value": "9001008000"
         },
         {
-            "key": "yb2bacceleratorstorefront.illegalrequirementstest.excluded",
-            "value": "true"
+            "key": "keygen.order.code.start",
+            "value": "0006400999"
         },
         {
-            "key": "multicountrysampledataaddon.import.active",
-            "value": "false"
+            "key": "apcustomerexchange.outbound.datahub.feed",
+            "value": "SAPCONSUMER_OUTBOUND_FEED"
         },
         {
-            "key": "occ.rewrite.overlapping.paths.enabled",
-            "value": "true"
+            "key": "numberseries.cache.size.order_code",
+            "value": "1"
         },
         {
-            "key": "apiregistryservices.events.exporting",
-            "value": "true"
+            "key": "saporderexchange.orderoutbound.maxRetries",
+            "value": "3"
         },
         {
-            "key": "backoffice.solr.search.index.autoinit",
-            "value": "true"
+            "key": "og4j.logger.de.hybris.platform.sap.orderexchange",
+            "value": "debug"
         },
         {
-            "key": "orbeonweb.orbeon.persistence.uri",
-            "value": "https://localhost:8088/xyformsweb/fr/service/hybris"
+            "key": "log4j2.logger.odataprocessor.name",
+            "value": "de.hybris.platform.odata2services.odata"
         },
         {
-            "key": "xyformsservices.orbeon.url.address",
-            "value": "http://localhost:8081/web-orbeon"
+            "key": "log4j2.logger.odataprocessor.level",
+            "value": "DEBUG"
         },
         {
-            "key": "xyformsstorefrontcommons.orbeon.keystoreFile",
-            "value": "/opt/hybris/bin/platform/tomcat/lib/keystore"
-        },
-        {
-            "key": "xyformsservices.webroot.override",
-            "value": "false"
-        },
-        {
-            "key": "backoffice.cockpit.ytestid.enabled",
-            "value": "true"
-        },
-        {
-            "key": "outboundservices.monitoring.enabled",
-            "value": "true"
+            "key": "log4j2.logger.odataprocessor.appenderRef.stdout.ref",
+            "value": "STDOUT"
         }
+    ],
+    "storefrontAddons": [
+        {
+            "addon": "commerceorgsamplesaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "commerceorgsamplesaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "customerticketingaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "promotionenginesamplesaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "adaptivesearchsamplesaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "pcmbackofficesamplesaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "ordermanagementaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+	        "addon":"commerceorgaddon",
+	        "storefront":"yb2bacceleratorstorefront",
+	        "template":"yacceleratorstorefront"
+        },
+        {
+            "addon": "orderselfserviceaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "consignmenttrackingaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "assistedservicestorefront",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "sapcoreaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "b2bacceleratoraddon",
+            "storefront": "yb2bacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "orderselfserviceaddon",
+            "storefront": "yb2bacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "ordermanagementaddon",
+            "storefront": "yb2bacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "commerceorgsamplesaddon",
+            "storefront": "yb2bacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+	        "addon":"accountsummaryaddon",
+	        "storefront":"yb2bacceleratorstorefront",
+	        "template":"yacceleratorstorefront"
+        },
+        {
+	        "addon":"sapinvoiceaddon",
+	        "storefront":"yb2bacceleratorstorefront",
+	        "template":"yacceleratorstorefront"
+        },
+        {
+            "addon": "pcmbackofficesamplesaddon",
+            "storefront": "yb2bacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+	        "addon":"cmsoccaddon",
+	        "storefront":"ycommercewebservices",
+	        "template":"ycommercewebservices"
+        },
+        {
+	        "addon":"acceleratorwebservicesaddon",
+	        "storefront":"ycommercewebservices",
+	        "template":"ycommercewebservices"
+        }
+        
     ],
     "aspects": [
         {
             "name": "backoffice",
-            "properties": [
-                {
-                    "key": "backoffice.solr.search.index.autoinit",
-                    "value": "true"
-                },
-                {
-                    "key": "xyformsservices.webroot.override",
-                    "value": "false"
-                }
-            ],
             "webapps": [
                 {
                     "name": "hac",
@@ -208,43 +270,8 @@
                     "contextPath": "/backoffice"
                 },
                 {
-                    "name": "odata2webservices"
-                },
-                {
-                    "name": "orbeonweb",
-                    "contextPath": "/web-orbeon"
-                },
-                {
-                    "name": "xyformsweb",
-                    "contextPath": "/xyformsweb"
-                },
-                {
-                    "name": "adminapi",
-                    "contextPath": "/adminapi"
-                },
-                {
-                    "name": "tomcatembeddedserver",
-                    "contextPath": "/tomcatembeddedserver"
-                },
-                {
-                    "name": "yempty",
-                    "contextPath": "/yempty"
-                },
-                {
-                    "name": "embeddedserver",
-                    "contextPath": "/embeddedserver"
-                },
-                {
-                    "name": "groovynature",
-                    "contextPath": "/groovynature"
-                },
-                {
-                    "name": "mediaconversion",
-                    "contextPath": "/mediaconversion"
-                },
-                {
-                    "name": "oauth2",
-                    "contextPath": "/authorizationserver"
+                    "name": "odata2webservices",
+                    "contextPath": "/odata2webservices"
                 }
             ]
         },
@@ -268,15 +295,7 @@
                     "value": "/"
                 },
                 {
-                    "key": "storefrontContextRoot",
-                    "value": ""
-                },
-                {
-                    "key": "xyformsservices.webroot.override",
-                    "value": "false"
-                },
-                {
-                    "key": "xss.filter.header.X-Frame-Options",
+                    "key":"storefrontContextRoot",
                     "value": ""
                 }
             ],
@@ -298,178 +317,14 @@
                     "contextPath": "/acceleratorservices"
                 },
                 {
-                    "name": "accountsummaryaddon",
-                    "contextPath": "/accountsummaryaddon"
-                },
-                {
-                    "name": "b2bpunchout",
-                    "contextPath": "/b2bpunchout"
-                },
-                {
-                    "name": "secureportaladdon",
-                    "contextPath": "/secureportaladdon"
-                },
-                {
                     "name": "hac",
                     "contextPath": "/hac"
-                },
-                {
-                    "name": "orbeonweb",
-                    "contextPath": "/web-orbeon"
-                },
-                {
-                    "name": "xyformsweb",
-                    "contextPath": "/xyformsweb"
-                }
-            ]
-        },
-        {
-            "name": "api",
-            "properties": [
-                {
-                    "key": "storefrontContextRoot",
-                    "value": "/yacceleratorstorefront"
-                },
-                {
-                    "key": "xss.filter.header.X-Frame-Options",
-                    "value": ""
-                }
-            ],
-            "webapps": [
-                {
-                    "name": "hac",
-                    "contextPath": "/hac"
-                },
-                {
-                    "name": "mediaweb",
-                    "contextPath": "/medias"
-                },
-                {
-                    "name": "adaptivesearchwebservices",
-                    "contextPath": "/adaptivesearchwebservices"
-                },
-                {
-                    "name": "yacceleratorstorefront",
-                    "contextPath": "/yacceleratorstorefront"
-                },
-                {
-                    "name": "yb2bacceleratorstorefront",
-                    "contextPath": "/yb2bacceleratorstorefront"
-                },
-                {
-                    "name": "acceleratorservices",
-                    "contextPath": "/acceleratorservices"
-                },
-                {
-                    "name": "accountsummaryaddon",
-                    "contextPath": "/accountsummaryaddon"
-                },
-                {
-                    "name": "b2bpunchout",
-                    "contextPath": "/b2bpunchout"
-                },
-                {
-                    "name": "secureportaladdon",
-                    "contextPath": "/secureportaladdon"
-                },
-                {
-                    "name": "commercewebservices",
-                    "contextPath": "/occ"
-                },
-                {
-                    "name": "smartedit",
-                    "contextPath": "/smartedit"
-                },
-                {
-                    "name": "cmssmartedit",
-                    "contextPath": "/cmssmartedit"
-                },
-                {
-                    "name": "smarteditwebservices",
-                    "contextPath": "/smarteditwebservices"
-                },
-                {
-                    "name": "cmssmarteditwebservices",
-                    "contextPath": "/cmssmarteditwebservices"
-                },
-                {
-                    "name": "personalizationsmartedit",
-                    "contextPath": "/personalizationsmartedit"
-                },
-                {
-                    "name": "personalizationpromotionssmartedit",
-                    "contextPath": "/personalizationpromotionssmartedit"
-                },
-                {
-                    "name": "oauth2",
-                    "contextPath": "/authorizationserver"
-                },
-                {
-                    "name": "cmswebservices",
-                    "contextPath": "/cmswebservices"
-                },
-                {
-                    "name": "permissionswebservices",
-                    "contextPath": "/permissionswebservices"
-                },
-                {
-                    "name": "ywebservices",
-                    "contextPath": "/ywebservices"
-                },
-                {
-                    "name": "previewwebservices",
-                    "contextPath": "/previewwebservices"
-                },
-                {
-                    "name": "personalizationwebservices",
-                    "contextPath": "/personalizationwebservices"
-                },
-                {
-                    "name": "personalizationsearchsmartedit",
-                    "contextPath": "/personalizationsearchsmartedit"
-                },
-                {
-                    "name": "warehousingwebservices",
-                    "contextPath": "/warehousingwebservices"
-                },
-                {
-                    "name": "merchandisingsmartedit",
-                    "contextPath": "/merchandisingsmartedit"
-                },
-                {
-                    "name": "merchandisingcmswebservices",
-                    "contextPath": "/merchandisingcmswebservices"
-                },
-                {
-                    "name": "couponwebservices",
-                    "contextPath": "/couponwebservices"
-                },
-                {
-                    "name": "assistedservicewebservices",
-                    "contextPath": "/assistedservicewebservices"
-                },
-                {
-                    "name": "ordermanagementwebservices",
-                    "contextPath": "/ordermanagementwebservices"
-                },
-                {
-                    "name": "b2bordermanagementwebservices",
-                    "contextPath": "/b2bordermanagementwebservices"
-                },
-                {
-                    "name": "datahubadapter",
-                    "contextPath": "/datahubadapter"
                 }
             ]
         },
         {
             "name": "backgroundProcessing",
-            "properties": [
-                {
-                    "key": "cluster.node.groups",
-                    "value": "integration,yHotfolderCandidate"
-                }
-            ],
+            "properties": [],
             "webapps": [
                 {
                     "name": "hac",
@@ -481,18 +336,5 @@
                 }
             ]
         }
-    ],
-    "tests": {
-        "extensions": [
-            "kiwi",
-            "tiger"
-        ],
-        "annotations": [
-            "UnitTests",
-            "IntegrationTests"
-        ],
-        "packages": [
-            "com.acme.*"
-        ]
-    }
+    ]
 }

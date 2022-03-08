@@ -7,6 +7,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
@@ -14,7 +15,9 @@
 		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/util
-		http://www.springframework.org/schema/util/spring-util.xsd">
+		http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!--
 		Section for Traditional Spring MVC.
@@ -23,14 +26,11 @@
     <context:annotation-config/>
     <bean id="webLazyInitOverrideBeanFactoryPostProcessor" parent="lazyInitOverrideBeanFactoryPostProcessor" />
 
-	<alias name="jaxb2RootElementHttpMessageConverter" alias="jaxbMessageConverter" />
-	<bean id="jaxb2RootElementHttpMessageConverter" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
-
 	<!-- activates annotation driven binding -->
 	<mvc:annotation-driven ignore-default-model-on-redirect="true" validator="validator">
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
-			<ref bean="jaxbMessageConverter"/>
+			<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
@@ -101,9 +101,7 @@
 			</property>
 		</bean>
 		<bean class="de.hybris.platform.yb2bacceleratorstorefront.interceptors.beforeview.UiExperienceMetadataViewHandler"  />
-		<bean class="de.hybris.platform.yb2bacceleratorstorefront.interceptors.beforeview.AnalyticsPropertiesBeforeViewHandler" >
-			<property name="hostConfigService" ref="hostConfigService" />
-		</bean>
+		<bean class="de.hybris.platform.yb2bacceleratorstorefront.interceptors.beforeview.AnalyticsPropertiesBeforeViewHandler" />
 		<bean class="de.hybris.platform.yb2bacceleratorstorefront.interceptors.beforeview.ConfigWro4jBeforeViewHandler" >
 			<property name="siteConfigService" ref="siteConfigService"/>
 		</bean>

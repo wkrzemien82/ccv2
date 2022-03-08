@@ -234,7 +234,7 @@ public class AddToCartController extends AbstractController
 	}
 
 	@RequestMapping(value = "/entrygroups/cart/addToEntryGroup", method =
-	{ RequestMethod.POST, RequestMethod.GET }) //NOSONAR
+	{ RequestMethod.POST, RequestMethod.GET })
 	public String addEntryGroupToCart(final Model model, @Valid final AddToEntryGroupForm form, final BindingResult bindingErrors)
 	{
 		if (bindingErrors.hasErrors())

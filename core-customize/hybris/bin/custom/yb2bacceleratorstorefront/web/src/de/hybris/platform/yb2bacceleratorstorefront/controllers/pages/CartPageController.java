@@ -36,7 +36,6 @@ import de.hybris.platform.commercefacades.voucher.VoucherFacade;
 import de.hybris.platform.commercefacades.voucher.exceptions.VoucherOperationException;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
 import de.hybris.platform.commerceservices.order.CommerceSaveCartException;
-import de.hybris.platform.commerceservices.security.BruteForceAttackHandler;
 import de.hybris.platform.core.enums.QuoteState;
 import de.hybris.platform.enumeration.EnumerationService;
 import de.hybris.platform.site.BaseSiteService;
@@ -120,9 +119,6 @@ public class CartPageController extends AbstractCartPageController
 
 	@Resource(name = "cartEntryActionFacade")
 	private CartEntryActionFacade cartEntryActionFacade;
-
-	@Resource(name = "bruteForceAttackHandler")
-	private BruteForceAttackHandler bruteForceAttackHandler;
 
 	@ModelAttribute("showCheckoutStrategies")
 	public boolean isCheckoutStrategyVisible()
@@ -275,9 +271,8 @@ public class CartPageController extends AbstractCartPageController
 		catch (final CommerceCartModificationException e)
 		{
 			LOG.error(e.getMessage(), e);
-			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER, "basket.error.entrygroup.remove",
-					new Object[]
-					{ groupNumber });
+			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
+					"basket.error.entrygroup.remove", new Object[]{groupNumber});
 		}
 		return REDIRECT_CART_URL;
 	}
@@ -505,7 +500,7 @@ public class CartPageController extends AbstractCartPageController
 
 	@RequestMapping(value = "/voucher/apply", method = RequestMethod.POST)
 	public String applyVoucherAction(@Valid final VoucherForm form, final BindingResult bindingResult,
-			final HttpServletRequest request, final RedirectAttributes redirectAttributes)
+			final RedirectAttributes redirectAttributes)
 	{
 		try
 		{
@@ -516,20 +511,10 @@ public class CartPageController extends AbstractCartPageController
 			}
 			else
 			{
-				final String ipAddress = request.getRemoteAddr();
-				if (bruteForceAttackHandler.registerAttempt(ipAddress + "_voucher"))
-				{
-					redirectAttributes.addFlashAttribute("disableUpdate", Boolean.valueOf(true));
-					redirectAttributes.addFlashAttribute("errorMsg",
-							getMessageSource().getMessage("text.voucher.apply.bruteforce.error", null, getI18nService().getCurrentLocale()));
-				}
-				else
-				{
-					voucherFacade.applyVoucher(form.getVoucherCode());
-					redirectAttributes.addFlashAttribute("successMsg",
-							getMessageSource().getMessage("text.voucher.apply.applied.success", new Object[]
-							{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
-				}
+				voucherFacade.applyVoucher(form.getVoucherCode());
+				redirectAttributes.addFlashAttribute("successMsg",
+						getMessageSource().getMessage("text.voucher.apply.applied.success", new Object[]
+						{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
 			}
 		}
 		catch (final VoucherOperationException e)
@@ -570,7 +555,6 @@ public class CartPageController extends AbstractCartPageController
 		return REDIRECT_CART_URL;
 	}
 
-	@Override
 	public BaseSiteService getBaseSiteService()
 	{
 		return baseSiteService;

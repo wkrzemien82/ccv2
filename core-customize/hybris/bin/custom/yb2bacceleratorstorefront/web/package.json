@@ -1,5 +1,5 @@
 {
-  "name": "yb2bacceleratorstorefront-web",
+  "name": "yb2bacceleratorstorefront",
   "version": "0.0.0",
   "description": "grunt config for the accelerator",
   "private": true,
@@ -10,12 +10,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "grunt": "^1.4.0",
-    "grunt-contrib-less": "^2.1.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "plugin": "^0.0.15"
+    "grunt": "^0.4.5",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "plugin": "^0.3.3"
   },
   "dependencies": {
-    "grunt-sync": "0.8.2"
+    "grunt-sync": "0.0.8"
   }
 }

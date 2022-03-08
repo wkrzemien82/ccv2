@@ -6,8 +6,6 @@ package de.hybris.platform.yb2bacceleratorstorefront.filters;
 import de.hybris.bootstrap.annotations.UnitTest;
 import de.hybris.platform.acceleratorstorefrontcommons.history.BrowseHistory;
 import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
-import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
-import de.hybris.platform.core.model.c2l.LanguageModel;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -67,11 +65,6 @@ public class StorefrontFilterTest
 	@Mock
 	private PathMatcher pathMatcher;
 
-	@Mock
-	private CommerceCommonI18NService commerceCommonI18NService;
-	@Mock
-	private LanguageModel languageModel;
-
 
 	@Before
 	public void initFilter()
@@ -94,10 +87,6 @@ public class StorefrontFilterTest
 		Mockito.when(request.getRequestURI()).thenReturn(requestUrlSb.toString());
 		Mockito.when(request.getServletPath()).thenReturn(SERVLET_PATH);
 		Mockito.when(pathMatcher.match(EXCLUDEDURL_PATTERN, SERVLET_PATH)).thenReturn(true);
-
-		filter.setCommerceCommonI18NService(commerceCommonI18NService);
-		Mockito.when(languageModel.getIsocode()).thenReturn("de");
-		Mockito.when(commerceCommonI18NService.getCurrentLanguage()).thenReturn(languageModel);
 	}
 
 	@Test
@@ -137,22 +126,4 @@ public class StorefrontFilterTest
 		Mockito.verify(session, Mockito.never()).setAttribute(StorefrontFilter.ORIGINAL_REFERER, REQUESTEDURL);
 	}
 
-	@Test
-	public void shouldSetCurrentLanguageWhenI18NSet() throws IOException, ServletException
-	{
-		Mockito.when(request.getMethod()).thenReturn(HttpMethod.GET.toString());
-		filter.doFilterInternal(request, response, filterChain);
-		Mockito.verify(commerceCommonI18NService).getCurrentLanguage();
-		Mockito.verify(storeSessionFacade, Mockito.times(1)).setCurrentLanguage("de");
-	}
-
-	@Test
-	public void shouldNotSetCurrentLanguageWhenI18NNotSet() throws IOException, ServletException
-	{
-		Mockito.when(request.getMethod()).thenReturn(HttpMethod.GET.toString());
-		Mockito.when(languageModel.getIsocode()).thenReturn("");
-		filter.doFilterInternal(request, response, filterChain);
-		Mockito.verify(commerceCommonI18NService).getCurrentLanguage();
-		Mockito.verify(storeSessionFacade, Mockito.never()).setCurrentLanguage(Mockito.anyString());
-	}
 }

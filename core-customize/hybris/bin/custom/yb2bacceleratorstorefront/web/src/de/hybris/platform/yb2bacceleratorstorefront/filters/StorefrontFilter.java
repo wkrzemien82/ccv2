@@ -7,7 +7,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.history.BrowseHistory;
 import de.hybris.platform.acceleratorstorefrontcommons.history.BrowseHistoryEntry;
 import de.hybris.platform.cms2.misc.CMSFilter;
 import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
-import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -38,7 +37,6 @@ public class StorefrontFilter extends OncePerRequestFilter
 	private BrowseHistory browseHistory;
 	private Set<String> refererExcludeUrlSet;
 	private PathMatcher pathMatcher;
-	private CommerceCommonI18NService commerceCommonI18NService;
 
 	@Override
 	public void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
@@ -49,8 +47,8 @@ public class StorefrontFilter extends OncePerRequestFilter
 
 		if (isSessionNotInitialized(session, queryString))
 		{
-
 			initDefaults(request);
+
 			markSessionInitialized(session);
 		}
 
@@ -60,7 +58,7 @@ public class StorefrontFilter extends OncePerRequestFilter
 			{
 				final String requestURL = request.getRequestURL().toString();
 				session.setAttribute(ORIGINAL_REFERER, StringUtils.isNotBlank(queryString) ? requestURL + "?" + queryString
-						: requestURL);	// NOSONAR
+						: requestURL);
 			}
 
 			getBrowseHistory().addBrowseHistoryEntry(new BrowseHistoryEntry(request.getRequestURI(), null));
@@ -99,11 +97,7 @@ public class StorefrontFilter extends OncePerRequestFilter
 
 	protected void initDefaults(final HttpServletRequest request)
 	{
-		final String currentLanguage = commerceCommonI18NService.getCurrentLanguage().getIsocode();
 		getStoreSessionFacade().initializeSession(Collections.list(request.getLocales()));
-		if (StringUtils.isNotBlank(currentLanguage)){
-			getStoreSessionFacade().setCurrentLanguage(currentLanguage);
-		}
 	}
 
 	protected StoreSessionFacade getStoreSessionFacade()
@@ -163,10 +157,5 @@ public class StorefrontFilter extends OncePerRequestFilter
 	public void setPathMatcher(final PathMatcher pathMatcher)
 	{
 		this.pathMatcher = pathMatcher;
-	}
-
-	public void setCommerceCommonI18NService(final CommerceCommonI18NService commerceCommonI18NService)
-	{
-		this.commerceCommonI18NService = commerceCommonI18NService;
 	}
 }

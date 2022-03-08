@@ -27,7 +27,6 @@ import org.apache.taglibs.standard.tag.common.core.UrlSupport;
 import org.owasp.html.HtmlPolicyBuilder;
 import org.owasp.html.PolicyFactory;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.web.util.HtmlUtils;
 
 import static de.hybris.platform.acceleratorstorefrontcommons.tags.HTMLSanitizer.sanitizeHTML;
 
@@ -88,7 +87,7 @@ public class CMSLinkComponentRenderer implements CMSComponentRenderer<CMSLinkCom
 		{
 			final String url = getUrl(component);
 			final String encodedUrl = UrlSupport.resolveUrl(url, null, pageContext);
-			final String linkName = HtmlUtils.htmlEscape(component.getLinkName());
+			final String linkName = component.getLinkName();
 			
 			StringBuilder html = new StringBuilder();
 

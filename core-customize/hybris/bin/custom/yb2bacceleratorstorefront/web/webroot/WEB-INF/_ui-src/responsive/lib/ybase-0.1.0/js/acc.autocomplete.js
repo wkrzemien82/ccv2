@@ -30,7 +30,7 @@ ACC.autocomplete = {
 				cache:{}, // init cache per instance
 				focus: function (){return false;}, // prevent textfield value replacement on item focus
 				select: function (event, ui){
-					ui.item.value = ACC.sanitizer.sanitizeSelect(ui.item.value);
+					ui.item.value = ACC.sanitizer.sanitize(ui.item.value);
                     window.location.href = ui.item.url;
                 }
 			},

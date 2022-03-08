@@ -45,7 +45,7 @@ public class AcceleratorAuthenticationProviderTest
 	UserService userService;
 
 	@Before
-	public void setUp()
+	public void setUp() throws Exception
 	{
 		MockitoAnnotations.initMocks(this);
 		acceleratorAuthenticationProvider = new AcceleratorAuthenticationProvider();
@@ -55,7 +55,7 @@ public class AcceleratorAuthenticationProviderTest
 	}
 
 	@Test(expected = BadCredentialsException.class)
-	public void testLoginForUserNotPartOfCustomerGroup()
+	public void testLoginForUserNotPartofCustomerGroup()
 	{
 		final Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DATE, 2);

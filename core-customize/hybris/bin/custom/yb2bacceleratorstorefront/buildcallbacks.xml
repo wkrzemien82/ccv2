@@ -68,20 +68,20 @@
     	
     <property location="${ext.yb2bacceleratorstorefront.path}" name="ext.yb2bacceleratorstorefront.mapperToPath"/>
     	
-    <property name="yb2bacceleratorstorefront.wro.addons.template.path" value="${ext.yb2bacceleratorstorefront.path}/wro_addons_template.xml"/>
+    <property name="wro.addons.template.path" value="${ext.yb2bacceleratorstorefront.path}/wro_addons_template.xml"/>
     	
-    <property name="yb2bacceleratorstorefront.wro.addons.dest.path" value="${ext.yb2bacceleratorstorefront.path}/resources/wro_addons.xml"/>
+    <property name="wro.addons.dest.path" value="${ext.yb2bacceleratorstorefront.path}/resources/wro_addons.xml"/>
     	
-    <property name="yb2bacceleratorstorefront.wro.group.node" value="&lt;groups xmlns=&quot;http://www.isdc.ro/wro&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.isdc.ro/wro wro.xsd&quot;&gt;"/>
+    <property name="wro.group.node" value="&lt;groups xmlns=&quot;http://www.isdc.ro/wro&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.isdc.ro/wro wro.xsd&quot;&gt;"/>
     	
     <if>
         		
         <os family="windows"/>
-        		
+        	    
         <then>
-            			
+            	        
             <propertyregex global="true" input="${ext.yb2bacceleratorstorefront.path}" override="yes" property="ext.yb2bacceleratorstorefront.mapperToPath" regexp="\\" replace="/"/>
-            		
+            	    
         </then>
         	
     </if>
@@ -571,12 +571,12 @@
                                     								
                                 </sequential>
                                 								
-                                <yb2bacceleratorstorefront_generate_wro_addons_xml extname="@{extname}"/>
+                                <generate_wro_addons_xml extname="@{extname}"/>
                                 							
                             </do>
                             						
                         </foreachext>
-                        						
+                        			            
                         <!-- Create TestClasses Files -->
                         						
                         <if>
@@ -588,33 +588,33 @@
                             </not>
                             							
                             <then>
-                                								
+                                					            
                                 <outofdate>
-                                    									
+                                    					                
                                     <sourcefiles>
-                                        										
+                                        					                    
                                         <fileset dir="${ext.yb2bacceleratorstorefront.path}">
-                                            											
+                                            					                        
                                             <include name="web/addontestsrc/**"/>
-                                            										
+                                            					                    
                                         </fileset>
-                                        									
+                                        					                
                                     </sourcefiles>
-                                    									
+                                    					                
                                     <targetfiles path="${HYBRIS_TEMP_DIR}/touch/yb2bacceleratorstorefront_addontestsrctouch"/>
-                                    									
+                                    					                
                                     <sequential>
-                                        										
+                                        					                    
                                         <mkdir dir="${ext.yb2bacceleratorstorefront.path}/resources/yb2bacceleratorstorefront"/>
-                                        										
+                                        					                    
                                         <testClassesScanner extension="yb2bacceleratorstorefront" fileExtensions="java,groovy,${ext.yb2bacceleratorstorefront.native.file.extension}" testSourceFolders="testsrc,${ext.yb2bacceleratorstorefront.additional.testsrc.dir},${addonTestsrcDirs}"/>
-                                        										
+                                        					                    
                                         <mkdir dir="${HYBRIS_TEMP_DIR}/touch"/>
-                                        										
+                                        					                    
                                         <touch file="${HYBRIS_TEMP_DIR}/touch/yb2bacceleratorstorefront_addontestsrctouch"/>
-                                        									
+                                        					                
                                     </sequential>
-                                    								
+                                    					            
                                 </outofdate>
                                 							
                             </then>
@@ -629,9 +629,9 @@
             			
             <yb2bacceleratorstorefront_compileuisrc_executor/>
             			
-            <yb2bacceleratorstorefront_create_empty_wro_addons_xml/>
+            <create_empty_wro_addons_xml/>
             			
-            <yb2bacceleratorstorefront_fix_root_node_for_wro_addons_xml/>
+            <fix_root_node_for_wro_addons_xml/>
             		
         </sequential>
         	
@@ -645,7 +645,7 @@
             			
             <yb2bacceleratorstorefront_generatevariables/>
             			
-            <yb2bacceleratorstorefront_delete_wro_addons_xml/>
+            <delete_wro_addons_xml/>
             			
             <foreachext>
                 				
@@ -673,17 +673,17 @@
         	
     </macrodef>
     	
-    <macrodef name="yb2bacceleratorstorefront_delete_wro_addons_xml">
+    <macrodef name="delete_wro_addons_xml">
         		
         <sequential>
             			
             <if>
-                				
-                <available file="${yb2bacceleratorstorefront.wro.addons.dest.path}"/>
+                        		
+                <available file="${wro.addons.dest.path}"/>
                 				
                 <then>
                     					
-                    <delete failonerror="false" file="${yb2bacceleratorstorefront.wro.addons.dest.path}"/>
+                    <delete failonerror="false" file="${wro.addons.dest.path}"/>
                     				
                 </then>
                 			
@@ -693,24 +693,24 @@
         	
     </macrodef>
     	
-    <macrodef name="yb2bacceleratorstorefront_create_empty_wro_addons_xml">
+    <macrodef name="create_empty_wro_addons_xml">
         		
         <sequential>
             			
             <if>
                 				
                 <not>
-                    					
-                    <available file="${yb2bacceleratorstorefront.wro.addons.dest.path}"/>
+                    	        		
+                    <available file="${wro.addons.dest.path}"/>
                     				
                 </not>
-                				
+                	        	
                 <then>
-                    					
-                    <echo> *** ${yb2bacceleratorstorefront.wro.addons.dest.path} not found, creating an empty one from the template... ***</echo>
-                    					
-                    <copy file="${yb2bacceleratorstorefront.wro.addons.template.path}" tofile="${yb2bacceleratorstorefront.wro.addons.dest.path}"/>
-                    				
+                    	        		
+                    <echo> *** ${wro.addons.dest.path} not found, creating an empty one from the template... ***</echo>
+                    	        		
+                    <copy file="${wro.addons.template.path}" tofile="${wro.addons.dest.path}"/>
+                            		
                 </then>
                 			
             </if>
@@ -719,119 +719,119 @@
         	
     </macrodef>
     	
-    <macrodef name="yb2bacceleratorstorefront_generate_wro_addons_xml">
+    <macrodef name="generate_wro_addons_xml">
         		
         <attribute name="extname"/>
         		
         <sequential>
             			
             <if>
-                				
+                	        	
                 <available file="${ext.@{extname}.path}/project.properties"/>
-                				
+                	        	
                 <then>
-                    					
-                    <echo>yb2bacceleratorstorefront_generate_wro_addons_xml for @{extname}</echo>
-                    					
+                    	        		
+                    <echo>generate_wro_addons_xml for @{extname}</echo>
+                    	        		
                     <property file="${ext.@{extname}.path}/project.properties"/>
-                    					
+                    	        		
                     <if>
-                        						
+                        	            		
                         <equals arg1="${yb2bacceleratorstorefront.wro4jconfigscan.@{extname}}" arg2="true"/>
-                        						
+                        	            		
                         <then>
-                            							
+                            	            			
                             <echo>yb2bacceleratorstorefront.wro4jconfigscan.@{extname}: ${yb2bacceleratorstorefront.wro4jconfigscan.@{extname}}</echo>
-                            							
+                            	            			
                             <if>
-                                								
+                                	            				
                                 <!-- if key doesn't exist in project.properties, the key itself is returned, so we need to escape 'arg2' -->
-                                								
+                                			            		
                                 <equals arg1="${@{extname}.javascript.paths.desktop}" arg2="$${@{extname}.javascript.paths.desktop}"/>
-                                								
+                                			            		
                                 <then>
-                                    									
+                                    			            			
                                     <var name="jsPathsDesktop" value=""/>
-                                    								
+                                    		            			
                                 </then>
-                                								
+                                	            				
                                 <else>
-                                    									
+                                    	            					
                                     <var name="jsPathsDesktop" value="${@{extname}.javascript.paths.desktop}"/>
-                                    								
+                                    	            				
                                 </else>
-                                							
+                                	            			
                             </if>
-                            							
+                            	            			
                             <if>
-                                								
+                                			            		
                                 <equals arg1="${@{extname}.javascript.paths.responsive}" arg2="$${@{extname}.javascript.paths.responsive}"/>
-                                								
+                                			            		
                                 <then>
-                                    									
+                                    			            			
                                     <var name="jsPathsResponsive" value=""/>
-                                    								
+                                    		            			
                                 </then>
-                                								
+                                	            				
                                 <else>
-                                    									
+                                    	            					
                                     <var name="jsPathsResponsive" value="${@{extname}.javascript.paths.responsive}"/>
-                                    								
+                                    	            				
                                 </else>
-                                							
+                                	            			
                             </if>
-                            							
+                            	            			
                             <if>
-                                								
+                                			            		
                                 <equals arg1="${@{extname}.css.paths.desktop}" arg2="$${@{extname}.css.paths.desktop}"/>
-                                								
+                                			            		
                                 <then>
-                                    									
+                                    			            			
                                     <var name="cssPathsDesktop" value=""/>
-                                    								
+                                    		            			
                                 </then>
-                                								
+                                	            				
                                 <else>
-                                    									
+                                    	            					
                                     <var name="cssPathsDesktop" value="${@{extname}.css.paths.desktop}"/>
-                                    								
+                                    	            				
                                 </else>
-                                							
+                                	            			
                             </if>
-                            							
+                            	            			
                             <if>
-                                								
+                                			            		
                                 <equals arg1="${@{extname}.css.paths.responsive}" arg2="$${@{extname}.css.paths.responsive}"/>
-                                								
+                                			            		
                                 <then>
-                                    									
+                                    			            			
                                     <var name="cssPathsResponsive" value=""/>
-                                    								
+                                    		            			
                                 </then>
-                                								
+                                	            				
                                 <else>
-                                    									
+                                    	            					
                                     <var name="cssPathsResponsive" value="${@{extname}.css.paths.responsive}"/>
-                                    								
+                                    	            				
                                 </else>
-                                							
+                                	            			
                             </if>
-                            							
-                            <yb2bacceleratorstorefront_create_wro_addons_xml cssPathsDesktop="${cssPathsDesktop}" cssPathsResponsive="${cssPathsResponsive}" extname="@{extname}" jsPathsDesktop="${jsPathsDesktop}" jsPathsResponsive="${jsPathsResponsive}"/>
-                            						
+                            	            			
+                            <create_wro_addons_xml cssPathsDesktop="${cssPathsDesktop}" cssPathsResponsive="${cssPathsResponsive}" extname="@{extname}" jsPathsDesktop="${jsPathsDesktop}" jsPathsResponsive="${jsPathsResponsive}"/>
+                            	            		
                         </then>
-                        					
+                        	        		
                     </if>
-                    				
+                    	       		
                 </then>
-                			
+                           	
             </if>
             		
         </sequential>
         	
     </macrodef>
     	
-    <macrodef name="yb2bacceleratorstorefront_create_wro_addons_xml">
+    <macrodef name="create_wro_addons_xml">
         		
         <attribute name="extname"/>
         		
@@ -848,19 +848,19 @@
             			
             <var name="addonPath" value="/_ui/addons/@{extname}"/>
             			
-            <echo>yb2bacceleratorstorefront_create_wro_addons_xml for @{extname}</echo>
+            <echo>create_wro_addons_xml for @{extname}</echo>
             			
             <if>
-                				
-                <available file="${yb2bacceleratorstorefront.wro.addons.template.path}"/>
-                				
+                	        	
+                <available file="${wro.addons.template.path}"/>
+                	        	
                 <then>
-                    					
-                    <yb2bacceleratorstorefront_create_empty_wro_addons_xml/>
-                    					
-                    <xmltask destbuffer="buffer" omitHeader="true" source="${yb2bacceleratorstorefront.wro.addons.dest.path}"/>
-                    					
-                    <xmltask dest="${yb2bacceleratorstorefront.wro.addons.dest.path}" omitHeader="true" sourcebuffer="buffer">
+                    	        		
+                    <create_empty_wro_addons_xml/>
+                    	        		
+                    <xmltask destbuffer="buffer" omitHeader="true" source="${wro.addons.dest.path}"/>
+                    	        		
+                    <xmltask dest="${wro.addons.dest.path}" omitHeader="true" sourcebuffer="buffer">
                         						
                         <call path="/groups/group">
                             							
@@ -981,14 +981,14 @@
                         </call>
                         					
                     </xmltask>
-                    					
-                    <xmltask dest="${yb2bacceleratorstorefront.wro.addons.dest.path}" omitHeader="true" outputter="simple:3" sourcebuffer="buffer"/>
-                    				
+                    			    	
+                    <xmltask dest="${wro.addons.dest.path}" omitHeader="true" outputter="simple:3" sourcebuffer="buffer"/>
+                            		
                 </then>
                 				
                 <else>
                     					
-                    <echo message="-----------WARNING----------- : Could not find template wro file = ${yb2bacceleratorstorefront.wro.addons.template.path}..."/>
+                    <echo message="-----------WARNING----------- : Could not find template wro file = ${wro.addons.template.path}..."/>
                     				
                 </else>
                 			
@@ -996,20 +996,20 @@
             			
 		
         </sequential>
-        	
+            
     </macrodef>
     	
-    <macrodef name="yb2bacceleratorstorefront_fix_root_node_for_wro_addons_xml">
+    <macrodef name="fix_root_node_for_wro_addons_xml">
         		
         <sequential>
             			
-            <replaceregexp file="${yb2bacceleratorstorefront.wro.addons.dest.path}" match="&lt;groups&gt;" replace="${yb2bacceleratorstorefront.wro.group.node}"/>
+            <replaceregexp file="${wro.addons.dest.path}" match="&lt;groups&gt;" replace="${wro.group.node}"/>
             		
         </sequential>
         	
     </macrodef>
     	
-    <!--
+    <!-- 
 		Called whenever 'ant ear' is used. this callback can be used to modify the content of the ear file
 
 		${ear.path}: 			path to ear
@@ -1025,7 +1025,7 @@
             			
             <commonwebclean/>
             			
-            <yb2bacceleratorstorefront_delete_wro_addons_xml/>
+            <delete_wro_addons_xml/>
             		
         </sequential>
         	

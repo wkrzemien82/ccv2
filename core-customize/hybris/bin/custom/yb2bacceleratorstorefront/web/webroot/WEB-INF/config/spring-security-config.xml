@@ -71,7 +71,7 @@
 	<security:http request-matcher-ref="excludeUrlRequestMatcher">
 		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
 		<security:access-denied-handler error-page="/login"/>
-		<security:session-management session-authentication-strategy-ref="fixation" session-authentication-error-url="/login" />
+		<security:session-management session-authentication-strategy-ref="fixation" invalid-session-url="/login" />
 		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
 		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
 
@@ -169,6 +169,7 @@
 		<set>
 			<value>/guest/*</value>
 			<value>/orderConfirmation/*</value>
+			<value>/login</value>
 			<value>/login/checkout</value>
 		</set>
 	</property>

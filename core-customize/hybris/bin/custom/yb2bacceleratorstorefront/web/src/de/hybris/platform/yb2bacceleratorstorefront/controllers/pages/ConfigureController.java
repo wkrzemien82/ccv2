@@ -43,12 +43,12 @@ public class ConfigureController extends AbstractPageController
 	private UrlResolver<ProductData> productDataUrlResolver;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String productDetail(@PathVariable("productCode") final String productCode, final Model model,
+	public String productDetail(@PathVariable("productCode") final String encodedProductCode, final Model model,
 			final HttpServletRequest request, final HttpServletResponse response)
 			throws CMSItemNotFoundException, UnsupportedEncodingException
 	{
 		String redirectTo = "";
-		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode,
+		final ProductData productData = productFacade.getProductForCodeAndOptions(decodeWithScheme(encodedProductCode, UTF_8),
 				Collections.singleton(ProductOption.GALLERY));
 
 		if (productData.getConfigurable())

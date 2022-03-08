@@ -96,7 +96,7 @@ public class LoginPageController extends AbstractLoginPageController
 		return processRegisterUserRequest(referer, form, bindingResult, model, request, response, redirectModel);
 	}
 
-	@RequestMapping(value = "/register/termsandconditions", method = RequestMethod.GET)
+	@RequestMapping(value = "/register/termsandconditions")
 	public String getTermsAndConditions(final Model model) throws CMSItemNotFoundException
 	{
 		final ContentPageModel pageForRequest = getCmsPageService().getPageForLabel("/termsAndConditions");

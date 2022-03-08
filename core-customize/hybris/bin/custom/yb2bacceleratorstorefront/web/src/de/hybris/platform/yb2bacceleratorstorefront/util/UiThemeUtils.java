@@ -13,10 +13,7 @@ import de.hybris.platform.commerceservices.enums.SiteTheme;
 import de.hybris.platform.yb2bacceleratorstorefront.web.view.UiExperienceViewResolver;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,7 +29,6 @@ public class UiThemeUtils
 	protected static final String RESOURCE_TYPE_JAVASCRIPT = "javascript";
 	protected static final String RESOURCE_TYPE_CSS = "css";
 	protected static final String PATHS = ".paths.";
-	protected static final String SMARTEDITADDON = "smarteditaddon";
 
 	private CMSSiteService cmsSiteService;
 	private RequiredAddOnsNameProvider requiredAddOnsNameProvider;
@@ -43,18 +39,13 @@ public class UiThemeUtils
 
 	public List getAddOnCommonCSSPaths(final HttpServletRequest request)
 	{
-		final List<String> addOnNames = requiredAddOnsNameProvider.getAddOns(request.getServletContext().getServletContextName());
-		return getAddOnResourcePaths(getContextPathFromRequest(request), addOnNames,  getCssPropertyNames());
-	}
+		final String[] propertyNames = new String[]
+		{ RESOURCE_TYPE_CSS + ".paths", //
+				RESOURCE_TYPE_CSS + PATHS + getUiExperience() //
+		};
 
-	public List getSmartEditAddOnCSSPaths(final HttpServletRequest request)
-	{
-		final Optional<String> smartEditAddOn = getSmartEditAddOn(request);
-		if (smartEditAddOn.isPresent())
-		{
-			return getAddOnResourcePaths(getContextPathFromRequest(request), Arrays.asList(smartEditAddOn.get()), getCssPropertyNames());
-		}
-		return Collections.emptyList();
+		return getAddOnResourcePaths(getContextPathFromRequest(request),
+				requiredAddOnsNameProvider.getAddOns(request.getServletContext().getServletContextName()), propertyNames);
 	}
 
 	public List getAddOnThemeCSSPaths(final HttpServletRequest request)
@@ -66,20 +57,15 @@ public class UiThemeUtils
 				requiredAddOnsNameProvider.getAddOns(request.getServletContext().getServletContextName()), propertyNames);
 	}
 
-	public List getSmartEditAddOnJSPaths(final HttpServletRequest request)
-	{
-		final Optional<String> smartEditAddOn = getSmartEditAddOn(request);
-		if (smartEditAddOn.isPresent())
-		{
-			return getAddOnResourcePaths(getContextPathFromRequest(request), Arrays.asList(smartEditAddOn.get()), getJsPropertyNames());
-		}
-		return Collections.emptyList();
-	}
-
 	public List getAddOnJSPaths(final HttpServletRequest request)
 	{
+		final String[] propertyNames = new String[]
+		{ RESOURCE_TYPE_JAVASCRIPT + ".paths", //
+				RESOURCE_TYPE_JAVASCRIPT + PATHS + getUiExperience() //
+		};
+
 		return getAddOnResourcePaths(getContextPathFromRequest(request),
-				requiredAddOnsNameProvider.getAddOns(request.getServletContext().getServletContextName()), getJsPropertyNames());
+				requiredAddOnsNameProvider.getAddOns(request.getServletContext().getServletContextName()), propertyNames);
 	}
 
 	public String getThemeNameForCurrentSite()
@@ -137,30 +123,6 @@ public class UiThemeUtils
 				addOnResourcePaths.add(contextPath + "/_ui/addons/" + addon + propertyPath);
 			}
 		}
-	}
-
-	protected String[] getCssPropertyNames()
-	{
-		return new String[]
-				{ RESOURCE_TYPE_CSS + ".paths", //
-						RESOURCE_TYPE_CSS + PATHS + getUiExperience() //
-				};
-	}
-
-	protected String[] getJsPropertyNames()
-	{
-		return new String[]
-			{ RESOURCE_TYPE_JAVASCRIPT + ".paths", //
-					RESOURCE_TYPE_JAVASCRIPT + PATHS + getUiExperience() //
-			};
-	}
-
-	protected Optional<String> getSmartEditAddOn(final HttpServletRequest request)
-	{
-		return requiredAddOnsNameProvider.getAddOns(request.getServletContext().getServletContextName())
-				.stream()
-				.filter(addOnName -> addOnName.equals(SMARTEDITADDON))
-				.findFirst();
 	}
 
 	protected String getDefaultThemeName()

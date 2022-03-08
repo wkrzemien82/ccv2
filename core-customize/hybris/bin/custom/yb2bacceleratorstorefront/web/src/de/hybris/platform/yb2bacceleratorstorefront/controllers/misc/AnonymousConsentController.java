@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -40,6 +41,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RequestMapping("/anonymous-consent")
 public class AnonymousConsentController extends AbstractPageController
 {
+	private static final String TEXT_ACCOUNT_CONSENT_TEMPLATE_NOT_FOUND = "text.account.consent.template.notFound";
 	private static final Logger LOGGER = Logger.getLogger(AnonymousConsentController.class);
 	private static final ObjectMapper mapper = new ObjectMapper();
 

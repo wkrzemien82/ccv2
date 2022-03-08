@@ -38,14 +38,14 @@ ACC.pickupinstore = {
 			e.preventDefault();
 			$listitems.css("transform","translateY("+(curPos+listHeight)+"px)")
 			curPos = curPos+listHeight;
-			checkPosition();
+			checkPosition("prev");
 		})
 
 		$(document).on("click","#colorbox .js-pickup-store-pager-next",function(e){
 			e.preventDefault();
 			$listitems.css("transform","translateY("+(curPos-listHeight)+"px)")
 			curPos = curPos-listHeight;
-			checkPosition();
+			checkPosition("next");
 		})
 
 		function checkPosition(){
@@ -226,7 +226,7 @@ ACC.pickupinstore = {
 			productIdNUM = productIdNUM.split("_");
 			productIdNUM = productIdNUM[1];
 
-			if (productId != null)
+			if (productId !== null)
 			{
 				cartItemProductPostfix = '_' + productId;
 			}
@@ -499,8 +499,7 @@ ACC.pickupinstore = {
 				disableAutoPan: true
 			});
 			google.maps.event.addListener(marker, 'click', function (){
-				var mapWindow = infowindow.open(map, marker, 'noopener,noreferrer');
-				mapWindow.opener = null;
+				infowindow.open(map, marker);
 			});
 		}
 		

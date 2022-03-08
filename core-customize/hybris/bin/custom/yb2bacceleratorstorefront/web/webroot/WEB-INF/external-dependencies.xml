@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.hybris.platform</groupId>
 	<artifactId>yb2bacceleratorstorefront.web</artifactId>
-	<version>2105.0</version>
+	<version>1905.18</version>
 
 	<packaging>jar</packaging>
 
@@ -15,12 +15,12 @@
 			<groupId>ro.isdc.wro4j</groupId>
 			<artifactId>wro4j-core</artifactId>
 			<version>1.8.0</version>
-		</dependency>
+		</dependency>	
 
 		<dependency>
 			<groupId>org.mozilla</groupId>
 			<artifactId>rhino</artifactId>
 			<version>1.7.7</version>
-		</dependency>
+		</dependency>			
 	</dependencies>
 </project>

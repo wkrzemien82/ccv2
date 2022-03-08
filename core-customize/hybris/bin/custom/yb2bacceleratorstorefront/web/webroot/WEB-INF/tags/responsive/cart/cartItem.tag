@@ -188,7 +188,7 @@
                             <input type="hidden" name="initialQuantity" value="${quantityHtml}"/>
                             <ycommerce:testId code="cart_product_quantity">
                                 <form:label cssClass="visible-xs visible-sm" path="quantity" for="quantity${entry.entryNumber}"></form:label>
-                                <form:input cssClass="form-control js-update-entry-quantity-input" disabled="${not entry.updateable}" type="text" size="1" maxlength="10" id="quantity_${entry.entryNumber}" path="quantity" />
+                                <form:input cssClass="form-control js-update-entry-quantity-input" disabled="${not entry.updateable}" type="text" size="1" id="quantity_${entry.entryNumber}" path="quantity" />
                             </ycommerce:testId>
                         </form:form>
                     </c:when>

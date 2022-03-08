@@ -66,7 +66,7 @@ public class StoreSessionController extends AbstractController
 	private SessionService sessionService;
 
 	@RequestMapping(value = "/language", method =
-	{ RequestMethod.GET, RequestMethod.POST }) //NOSONAR
+	{ RequestMethod.GET, RequestMethod.POST })
 	public String selectLanguage(@RequestParam("code") final String isoCode, final HttpServletRequest request)
 	{
 		final String previousLanguage = storeSessionFacade.getCurrentLanguage().getIsocode();
@@ -81,7 +81,7 @@ public class StoreSessionController extends AbstractController
 	}
 
 	@RequestMapping(value = "/currency", method =
-	{ RequestMethod.GET, RequestMethod.POST }) //NOSONAR
+	{ RequestMethod.GET, RequestMethod.POST })
 	public String selectCurrency(@RequestParam("code") final String isoCode, final HttpServletRequest request)
 	{
 		final String previousCurrency = storeSessionFacade.getCurrentCurrency().getIsocode();
@@ -92,7 +92,7 @@ public class StoreSessionController extends AbstractController
 	}
 
 	@RequestMapping(value = "/ui-experience", method =
-	{ RequestMethod.GET, RequestMethod.POST }) //NOSONAR
+	{ RequestMethod.GET, RequestMethod.POST })
 	public String selectUiExperienceLevel(@RequestParam("level") final String uiExperienceLevelString,
 			final HttpServletRequest request)
 	{
@@ -159,7 +159,7 @@ public class StoreSessionController extends AbstractController
 	}
 
 	@RequestMapping(value = "/ui-experience-level-prompt", method =
-	{ RequestMethod.GET, RequestMethod.POST }) //NOSONAR
+	{ RequestMethod.GET, RequestMethod.POST })
 	public String selectUiExperienceLevelPrompt(@RequestParam("hide") final boolean hideFlag, final HttpServletRequest request)
 	{
 		setHideUiExperienceLevelOverridePrompt(request, hideFlag);
